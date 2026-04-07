@@ -1,6 +1,6 @@
 package org.depth;
 
-public class LAB1 {
+public class _OverLoading {
 
 
     public int add(int a, int b){
