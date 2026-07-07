@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 시작</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        main {
+            max-width: 420px;
+            margin: 72px auto;
+            padding: 28px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: 26px;
+        }
+
+        p {
+            margin: 0 0 24px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .actions {
+            display: grid;
+            gap: 12px;
+        }
+
+        a {
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: 6px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .primary {
+            background: #222;
+            color: #fff;
+        }
+
+        .secondary {
+            border: 1px solid #bbb;
+            color: #222;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <h1>게시판</h1>
+    <p>로그인하거나 새 계정을 만들어 게시판을 이용하세요.</p>
+
+    <div class="actions">
+        <a class="primary" th:href="@{/members/login}">로그인</a>
+        <a class="secondary" th:href="@{/members/new}">회원가입</a>
+    </div>
+</main>
+</body>
+</html>

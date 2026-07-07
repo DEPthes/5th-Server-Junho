@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 수정</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #f5f6f8; color: #222; }
+        main { max-width: 720px; margin: 56px auto; padding: 28px; background: #fff; border: 1px solid #ddd; border-radius: 8px; }
+        h1 { margin: 0 0 24px; font-size: 24px; }
+        label { display: block; margin-bottom: 8px; font-weight: 700; }
+        input, textarea { box-sizing: border-box; width: 100%; margin-bottom: 8px; padding: 12px; border: 1px solid #bbb; border-radius: 6px; font-size: 15px; font-family: inherit; }
+        input { height: 42px; }
+        textarea { min-height: 260px; resize: vertical; }
+        .field { margin-bottom: 16px; }
+        .error { margin: 0; color: #c62828; font-size: 14px; }
+        .actions { display: flex; gap: 8px; justify-content: flex-end; }
+        .button, button { display: inline-block; padding: 11px 16px; border: 0; border-radius: 6px; background: #222; color: #fff; font-size: 15px; text-decoration: none; cursor: pointer; }
+        .secondary { background: #777; }
+    </style>
+</head>
+<body>
+<main>
+    <h1>게시글 수정</h1>
+
+    <form th:action="@{/posts/{postId}/edit(postId=${postId})}" th:object="${postUpdateRequest}" method="post">
+        <div class="field">
+            <label for="title">제목</label>
+            <input id="title" type="text" th:field="*{title}">
+            <p class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+        </div>
+
+        <div class="field">
+            <label for="content">내용</label>
+            <textarea id="content" th:field="*{content}"></textarea>
+            <p class="error" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></p>
+        </div>
+
+        <div class="actions">
+            <a class="button secondary" th:href="@{/posts/{postId}(postId=${postId})}">취소</a>
+            <button type="submit">수정</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>

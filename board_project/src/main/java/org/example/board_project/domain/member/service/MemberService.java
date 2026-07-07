@@ -2,6 +2,7 @@ package org.example.board_project.domain.member.service;
 
 import lombok.RequiredArgsConstructor;
 import org.example.board_project.domain.member.dto.MemberCreateRequest;
+import org.example.board_project.domain.member.dto.MemberLoginRequest;
 import org.example.board_project.domain.member.entity.Member;
 import org.example.board_project.domain.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,17 @@ public class MemberService {
         );
 
         return memberRepository.save(member).getId();
+    }
+
+    public Long login(MemberLoginRequest request) {
+        Member member = memberRepository.findByUsername(request.getUsername())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid username or password."));
+
+        if (!member.getPassword().equals(request.getPassword())) {
+            throw new IllegalArgumentException("Invalid username or password.");
+        }
+
+        return member.getId();
     }
 
     private void validateDuplicateMember(MemberCreateRequest request) {

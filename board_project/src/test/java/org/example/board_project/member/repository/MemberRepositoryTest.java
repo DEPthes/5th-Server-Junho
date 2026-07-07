@@ -38,4 +38,14 @@ class MemberRepositoryTest {
         assertThat(memberRepository.existsByEmail("junho@example.com")).isTrue();
         assertThat(memberRepository.existsByEmail("unknown@example.com")).isFalse();
     }
+
+    @Test
+    @DisplayName("Finds a member by username")
+    void findByUsername() {
+        Member member = new Member("junho", "password123", "junho@example.com");
+        memberRepository.save(member);
+
+        assertThat(memberRepository.findByUsername("junho")).isPresent();
+        assertThat(memberRepository.findByUsername("unknown")).isEmpty();
+    }
 }
